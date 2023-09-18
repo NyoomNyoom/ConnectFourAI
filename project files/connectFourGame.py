@@ -25,6 +25,8 @@ class game:
         self.player1 = player1
         self.player2 = player2
 
+        self.turnsTaken = 0
+
         #The game board, its being treated as a matrix :)
         self.gameBoard = [
                         [0,0,0,0,0,0,0],
@@ -37,4 +39,7 @@ class game:
 
     def checkWinCon(self, player):
 
-        
+        if(self.turnsTaken > 7):
+
+            for row in self.gameBoard:
+                print(row)
