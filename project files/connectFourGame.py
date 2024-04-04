@@ -27,6 +27,7 @@ class Game:
     def __init__(self, player1, player2):
         self.player1 = player1
         self.player2 = player2
+        self.playerTurn = 1
 
         self.turnsTaken = 0
 
@@ -49,6 +50,12 @@ class Game:
 
     def makeMove(self, player):
         column = player.getMove()
+        rowNum = 0
+        validMove = False
+        while not validMove:
+            if(self.gameBoard[rowNum][column] == 1 or self.gameBoard[rowNum][column] == 2):
+                rowNum += 1
+            else:
+                validMove = True
 
-        for row in self.gameBoard:
-            pass
+        self.gameBoard[rowNum][column] = self.playerTurn
