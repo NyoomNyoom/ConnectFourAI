@@ -2,7 +2,7 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
-class player:
+class Player:
 
     def __init__(self, playerNum, agent, game):
         if(playerNum == 1):
@@ -13,13 +13,16 @@ class player:
         self.game = game
 
     def playGame(self):
+        pass
 
     def getMove(self):
         move = self.agent.agentFunction()
 
+        return move
 
 
-class game:
+
+class Game:
 
     def __init__(self, player1, player2):
         self.player1 = player1
@@ -43,3 +46,9 @@ class game:
 
             for row in self.gameBoard:
                 print(row)
+
+    def makeMove(self, player):
+        column = player.getMove()
+
+        for row in self.gameBoard:
+            pass
