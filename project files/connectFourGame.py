@@ -48,15 +48,22 @@ class Game:
             for row in self.gameBoard:
                 print(row)
 
-    def makeMove(self, player):
-        column = player.getMove()
-        rowNum = 0
-        validMove = False
-        while not validMove:
+    #Checks if the move is legal, if not.
+    def checkMoveLegal(self, player):
+      validMove = False
+      rowNum = 0
+
+        #Check where the puck can be played in that column
+        while rowNum <= 5:
             if self.gameBoard[rowNum][column] == 1 or self.gameBoard[rowNum][column] == 2:
                 rowNum += 1
             else:
                 validMove = True
+      return validMove
+
+    def makeMove(self, player):
+        column = player.getMove()
+        rowNum = 0
 
         if self.isPlayer1:
             self.gameBoard[rowNum][column] = 1
