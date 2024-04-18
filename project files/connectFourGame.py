@@ -4,13 +4,12 @@ __version__ = 1.0
 
 class Player:
 
-    def __init__(self, playerNum, agent, game):
+    def __init__(self, playerNum, agent):
         if(playerNum == 1):
             self.playerColour = "blue"
         else:
             self.playerColour = "red"
         self.agent = agent
-        self.game = game
 
     def playGame(self):
         pass
@@ -62,6 +61,7 @@ class Game:
                 break
       return validMove
 
+    #Makes the move in the given row.
     def makeMove(self, player):
         column = player.getMove()
         rowNum = 0
