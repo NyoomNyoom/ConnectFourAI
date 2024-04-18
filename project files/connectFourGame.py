@@ -59,6 +59,7 @@ class Game:
                 rowNum += 1
             else:
                 validMove = True
+                break
       return validMove
 
     def makeMove(self, player):
