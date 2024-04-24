@@ -2,10 +2,10 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
-class Player:
 
+class Player:
     def __init__(self, playerNum, agent):
-        if(playerNum == 1):
+        if playerNum == 1:
             self.playerColour = "blue"
         else:
             self.playerColour = "red"
@@ -20,7 +20,6 @@ class Player:
         return move
 
 
-
 class Game:
 
     def __init__(self, player1, player2):
@@ -30,7 +29,7 @@ class Game:
 
         self.turnsTaken = 0
 
-        #The game board, its being treated as a matrix :)
+        # The game board, its being treated as a matrix :)
         self.gameBoard = [
                         [0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0],
@@ -47,28 +46,31 @@ class Game:
             for row in self.gameBoard:
                 print(row)
 
-    #Checks if the move is legal, if not.
-    def checkMoveLegal(self, player):
-      validMove = False
-      rowNum = 0
+    # Checks if the move is legal, if not.
+    def checkMoveLegal(self, column):
+        validMove = False
+        rowNum = 0
 
-        #Check where the puck can be played in that column
+        # Check where the puck can be played in that column
         while rowNum <= 5:
             if self.gameBoard[rowNum][column] == 1 or self.gameBoard[rowNum][column] == 2:
                 rowNum += 1
             else:
                 validMove = True
                 break
-      return validMove
+        return validMove
 
-    #Makes the move in the given row.
+    # Makes the move in the given row.
     def makeMove(self, player):
         column = player.getMove()
         rowNum = 0
 
-        if self.isPlayer1:
-            self.gameBoard[rowNum][column] = 1
-            self.isPlayer1 = False
+        if self.checkMoveLegal(column):
+            if self.isPlayer1:
+                self.gameBoard[rowNum][column] = 1
+                self.isPlayer1 = False
+            else:
+                self.gameBoard[rowNum][column] = 2
+                self.isPlayer1 = True
         else:
-            self.gameBoard[rowNum][column] = 2
-            self.isPlayer1 = True
+            self.makeMove(player)
