@@ -71,27 +71,27 @@ class Game:
         else:
             self.makeMove(player)
 
-    def checkNorth(self, player):
+    def checkNorth(self, playerCounter):
         pass
 
-    def checkSouth(self, player):
+    def checkSouth(self, playerCounter):
         pass
 
-    def checkWest(self, player):
+    def checkWest(self, playerCounter):
         pass
 
-    def checkEast(self, player):
+    def checkEast(self, playerCounter):
         pass
 
-    def checkNorthEast(self, player):
+    def checkNorthEast(self, playerCounter):
         pass
 
-    def checkNorthWest(self, player):
+    def checkNorthWest(self, playerCounter):
         pass
 
-    def checkSouthEast(self, player):
+    def checkSouthEast(self, playerCounter):
         pass
 
-    def checkSouthWest(self, player):
+    def checkSouthWest(self, playerCounter):
         pass
 
