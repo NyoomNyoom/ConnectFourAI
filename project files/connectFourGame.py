@@ -40,11 +40,7 @@ class Game:
                     ]
 
     def checkWinCon(self, player):
-
-        if(self.turnsTaken > 7):
-
-            for row in self.gameBoard:
-                print(row)
+        pass
 
     # Checks if the move is legal, if not.
     def checkMoveLegal(self, column):
