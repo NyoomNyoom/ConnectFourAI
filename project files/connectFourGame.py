@@ -70,3 +70,28 @@ class Game:
                 self.isPlayer1 = True
         else:
             self.makeMove(player)
+
+    def checkNorth(self, player):
+        pass
+
+    def checkSouth(self, player):
+        pass
+
+    def checkWest(self, player):
+        pass
+
+    def checkEast(self, player):
+        pass
+
+    def checkNorthEast(self, player):
+        pass
+
+    def checkNorthWest(self, player):
+        pass
+
+    def checkSouthEast(self, player):
+        pass
+
+    def checkSouthWest(self, player):
+        pass
+
