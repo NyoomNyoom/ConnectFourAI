@@ -4,11 +4,7 @@ __version__ = 1.0
 
 
 class Player:
-    def __init__(self, playerNum, agent):
-        if playerNum == 1:
-            self.playerColour = "blue"
-        else:
-            self.playerColour = "red"
+    def __init__(self, agent):
         self.agent = agent
 
     def playGame(self):
@@ -18,7 +14,6 @@ class Player:
         move = self.agent.agentFunction()
 
         return move
-
 
 class Game:
 
@@ -71,11 +66,18 @@ class Game:
         else:
             self.makeMove(player)
 
-    def checkNorth(self, playerCounter):
-        pass
-
-    def checkSouth(self, playerCounter):
-        pass
+    # A method to check if the there is four counters straight up or down.
+    def checkUpDown(self, playerCounter):
+        for rowNum in range(5):
+            for colNum in range(6):
+                if self.gameboard[rowNum][colNum] == playerCounter:
+                    if self.gameBoard[rowNum+3][colNum]:  # Checking the furthest counter first (to reduce checks).
+                        if self.gameBoard[rowNum + 2][colNum]:
+                            if self.gameBoard[rowNum + 1][colNum]:
+                                return True
+            if rowNum > 2:
+                return False
+        return False  # Just incase the code makes it here.
 
     def checkWest(self, playerCounter):
         pass
