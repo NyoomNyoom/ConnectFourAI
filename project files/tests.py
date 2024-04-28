@@ -29,7 +29,7 @@ class TestGame(unittest.TestCase):
     def test_player2nameINIT(self):
         newGame = Game("Player 1", "Player 2")
 
-        self.assertEqual(newGame.player1, "Player 2", "Player 2 name not set correctly.")
+        self.assertEqual(newGame.player2, "Player 2", "Player 2 name not set correctly.")
 
     # A method to check if turnsTaken is being setup properly
     def test_turnsTakenINIT(self):
