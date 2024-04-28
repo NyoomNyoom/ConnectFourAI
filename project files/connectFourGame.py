@@ -75,14 +75,17 @@ class Game:
                         if self.gameBoard[rowNum + 2][colNum]:
                             if self.gameBoard[rowNum + 1][colNum]:
                                 return True
-        return False  # Just incase the code makes it here.
+        return False  #runs if one if statement fails.
 
-    def checkWest(self, playerCounter):
-        pass
-
-    def checkEast(self, playerCounter):
-        pass
-
+    def checkLeftRight(self, playerCounter):
+        for rowNum in range(5):
+            for colNum in range(4):
+                if self.gameBoard[rowNum][colNum] == playerCounter:
+                    if self.gameBoard[rowNum][colNum + 3] == playerCounter:
+                        if self.gameBoard[rowNum][colNum + 2] == playerCounter:
+                            if self.gameBoard[rowNum][colNum + 1] == playerCounter:
+                                return True
+        return False
     def checkNorthEast(self, playerCounter):
         pass
 
