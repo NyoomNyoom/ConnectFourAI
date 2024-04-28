@@ -76,7 +76,7 @@ class Game:
                         if self.gameBoard[rowNum + 2][colNum] == playerCounter:
                             if self.gameBoard[rowNum + 1][colNum] == playerCounter:
                                 return True
-        return False  #runs if one if statement fails.
+        return False  # runs if one if statement fails.
 
     def checkLeftRight(self, playerCounter):
         for rowNum in range(5):
@@ -87,15 +87,13 @@ class Game:
                             if self.gameBoard[rowNum][colNum + 1] == playerCounter:
                                 return True
         return False
-    def checkNorthEast(self, playerCounter):
+
+    # A method to check the diagonal North east South west (/)
+    def checkNESW(self, playerCounter):
         pass
 
-    def checkNorthWest(self, playerCounter):
+    # A method to check the diagonal North west South East (\)
+    def checkNWSE(self, playerCounter):
         pass
 
-    def checkSouthEast(self, playerCounter):
-        pass
-
-    def checkSouthWest(self, playerCounter):
-        pass
 
