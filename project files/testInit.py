@@ -3,8 +3,7 @@ import unittest
 from connectFourGame import Game
 
 
-class TestGame(unittest.TestCase):
-    pass
+class TestGameInit(unittest.TestCase):
 
     # A method to test if the game board is set up properly
     def test_gameboardINIT(self):
