@@ -70,7 +70,7 @@ class Game:
     def checkUpDown(self, playerCounter):
         for rowNum in range(3):
             for colNum in range(6):
-                if self.gameboard[rowNum][colNum] == playerCounter:
+                if self.gameBoard[rowNum][colNum] == playerCounter:
                     # Checking the furthest counter first (in an effort to reduce comparisons).
                     if self.gameBoard[rowNum+3][colNum] == playerCounter:
                         if self.gameBoard[rowNum + 2][colNum] == playerCounter:
@@ -95,7 +95,7 @@ class Game:
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     if self.gameBoard[rowNum - 3][colNum + 3] == playerCounter:
                         if self.gameBoard[rowNum - 2][colNum + 2] == playerCounter:
-                            if self.gameboard[rowNum - 1][colNum + 1] == playerCounter:
+                            if self.gameBoard[rowNum - 1][colNum + 1] == playerCounter:
                                 return True
         return False
 
