@@ -15,6 +15,7 @@ class Player:
 
         return move
 
+
 class Game:
 
     def __init__(self, player1, player2):
