@@ -71,9 +71,10 @@ class Game:
         for rowNum in range(3):
             for colNum in range(6):
                 if self.gameboard[rowNum][colNum] == playerCounter:
-                    if self.gameBoard[rowNum+3][colNum]:  # Checking the furthest counter first (to reduce checks).
-                        if self.gameBoard[rowNum + 2][colNum]:
-                            if self.gameBoard[rowNum + 1][colNum]:
+                    # Checking the furthest counter first (in an effort to reduce comparisons).
+                    if self.gameBoard[rowNum+3][colNum] == playerCounter:
+                        if self.gameBoard[rowNum + 2][colNum] == playerCounter:
+                            if self.gameBoard[rowNum + 1][colNum] == playerCounter:
                                 return True
         return False  #runs if one if statement fails.
 
