@@ -33,3 +33,7 @@ jobs:
       working-directory: ./project files
       run: |
         python -m unittest -v testInit.py
+    - name: Testing the game logic with unittest
+      working-directory: ./project files
+      run: |
+        python -m unittest -v testGameLogic.py
