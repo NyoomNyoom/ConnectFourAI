@@ -57,8 +57,8 @@ class Game:
 
     # Makes the move in the given column if the move is legal. If the move is not legal, recursively call the makeMove
     # method.
-    def makeMove(self, player):
-        column = player.getMove()
+    def makeMove(self, colIn):
+        column = colIn
         rowNum = 0
 
         while rowNum <= 5:
