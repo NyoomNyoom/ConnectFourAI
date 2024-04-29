@@ -77,7 +77,7 @@ class Game:
     # A method to check if the there is four counters straight up or down.
     def checkUpDown(self, playerCounter):
         for rowNum in range(3):
-            for colNum in range(6):
+            for colNum in range(7):
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     # Checking the furthest counter first (in an effort to reduce comparisons).
                     if self.gameBoard[rowNum+3][colNum] == playerCounter:
