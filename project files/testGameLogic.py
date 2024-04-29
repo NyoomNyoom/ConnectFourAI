@@ -120,3 +120,31 @@ class TestGameLogic(unittest.TestCase):
         newGame.makeMove(6)
 
         self.assertEqual(newGame.gameBoard, expectedGameBoard, "The game boards do not match.")
+
+    # Unit tests for the checkUpDown Method.
+
+    # Testing a winning combination in the first column.
+    def test_checkUpDownFirstCol(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [1, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        self.assertEqual(newGame.checkUpDown(1), True, "Can't find a vertical winning combination on the game board.")
+
+    # Testing a winning combination in the last column.
+    def test_checkUpDownLastCol(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        self.assertEqual(newGame.checkUpDown(1), True, "Cant find a vertical winning combination on the game board.")
