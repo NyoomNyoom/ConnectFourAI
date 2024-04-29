@@ -50,3 +50,73 @@ class TestGameLogic(unittest.TestCase):
 
         self.assertEqual(newGame.checkMoveLegal(6), True, "Checker assumes legal move is illegal")
 
+    # Testing methods for makeMove. I will not be adding a testing method for illegal moves as with the way I am developing the code,
+
+    # Tests if the method can make a move on an empty board.
+    def test_makeMoveEmtpy(self):
+        newGame = Game("Player 1", "Player 2")
+        expectedGameBoard = [
+            [1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        newGame.makeMove(0)
+
+        self.assertEqual(newGame.gameBoard, expectedGameBoard, "The game boards do not match.")
+
+    # Tests if the method can make a move on the last row of a column.
+    def test_makeMoveEmtpy(self):
+        newGame = Game("Player 1", "Player 2")
+        expectedGameBoard = [
+            [1, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0]]
+
+        newGame.gameBoard = [
+            [1, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        newGame.makeMove(0)
+
+        self.assertEqual(newGame.gameBoard, expectedGameBoard, "The game boards do not match.")
+
+    # Checks if the method can make a move as player 2.
+    def test_makeMovePlayer2(self):
+        newGame = Game("Player 1", "Player 2")
+        expectedGameBoard = [
+            [2, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        newGame.isPlayer1 = False
+        newGame.makeMove(0)
+
+        self.assertEqual(newGame.gameBoard, expectedGameBoard, "The game boards do not match.")
+
+    # Checks if the method can make a move in the last row.
+    def test_makeMoveLastCol(self):
+        newGame = Game("Player 1", "Player 2")
+        expectedGameBoard = [
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        newGame.makeMove(6)
+
+        self.assertEqual(newGame.gameBoard, expectedGameBoard, "The game boards do not match.")
