@@ -61,7 +61,11 @@ class Game:
         column = player.getMove()
         rowNum = 0
 
-        ###### NEED TO CHANGE THIS TO WORK OUT WHAT ROW TO PUT COUNTER IN.
+        while rowNum <= 5:
+            if self.gameBoard[rowNum][column] == 1 or self.gameBoard[rowNum][column] == 2:
+                rowNum +=1
+            else:
+                break
 
         if self.isPlayer1:
             self.gameBoard[rowNum][column] = 1
