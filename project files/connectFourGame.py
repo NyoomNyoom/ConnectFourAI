@@ -87,7 +87,7 @@ class Game:
         return False  # runs if one if statement fails.
 
     def checkLeftRight(self, playerCounter):
-        for rowNum in range(5):
+        for rowNum in range(6):
             for colNum in range(4):
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     if self.gameBoard[rowNum][colNum + 3] == playerCounter:
