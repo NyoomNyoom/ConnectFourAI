@@ -148,3 +148,30 @@ class TestGameLogic(unittest.TestCase):
             [0, 0, 0, 0, 0, 0, 0]]
 
         self.assertEqual(newGame.checkUpDown(1), True, "Cant find a vertical winning combination on the game board.")
+
+    # Unit tests for checkLeftRight method.
+
+    # Testing a winning combination in the first row.
+    def test_checkLeftRightFirstRow(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [1, 1, 1, 1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+
+        self.assertEqual(newGame.checkLeftRight(1), True, "Cant find a horizontal winning combination on the board.")
+
+    def test_checkLeftRightLastRow(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1, 1]]
+
+        self.assertEqual(newGame.checkLeftRight(1), True, "Cant find a horizontal winning combination on the board.")
