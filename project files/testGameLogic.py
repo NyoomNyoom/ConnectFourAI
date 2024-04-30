@@ -68,7 +68,7 @@ class TestGameLogic(unittest.TestCase):
         self.assertEqual(newGame.gameBoard, expectedGameBoard, "The game boards do not match.")
 
     # Tests if the method can make a move on the last row of a column.
-    def test_makeMoveEmtpy(self):
+    def test_makeMoveLastRow(self):
         newGame = Game("Player 1", "Player 2")
         expectedGameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
