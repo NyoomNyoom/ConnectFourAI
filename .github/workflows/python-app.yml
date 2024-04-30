@@ -28,15 +28,16 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
+        pip install coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Testing initialisation with unittest
       working-directory: ./project files
       run: |
-        python -m unittest -v testInit.py
+        python -m coverage run -m unittest -v testInit.py
     - name: Testing the game logic with unittest
       working-directory: ./project files
       run: |
-        python -m unittest -v testGameLogic.py
+        python -m coverage run -m unittest -v testGameLogic.py
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
