@@ -99,7 +99,7 @@ class Game:
     # A method to check the diagonal North east South west (/)
     def checkNESW(self, playerCounter):
         for rowNum in range(3,6):
-            for colNum in range(5):
+            for colNum in range(4):
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     if self.gameBoard[rowNum - 3][colNum + 3] == playerCounter:
                         if self.gameBoard[rowNum - 2][colNum + 2] == playerCounter:
