@@ -1,5 +1,7 @@
 import unittest
 from connectFourGame import Game
+from connectFourGame import Player
+
 
 class TestGameLogic(unittest.TestCase):
 
@@ -7,13 +9,17 @@ class TestGameLogic(unittest.TestCase):
 
     # Checks on empty board.
     def test_moveCheckerEmpty(self):
-        newGame = Game("Player 1", "player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
 
         self.assertEqual(newGame.checkMoveLegal(0), True, "Checker assumes legal move is illegal")
 
     # Checks on the last row of a column.
     def test_moveCheckerLastRow(self):
-        newGame = Game("Player 1", "player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0],
@@ -26,7 +32,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Checks on a full column.
     def test_moveCheckerIllegalMove(self):
-        newGame = Game("Player 1", "player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0],
@@ -39,7 +47,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Checks the last row of the last column.
     def test_moveCheckerLastRowLastCol(self):
-        newGame = Game("Player 1", "player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 1],
@@ -55,7 +65,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Tests if the method can make a move on an empty board.
     def test_makeMoveEmtpy(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         expectedGameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -70,7 +82,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Tests if the method can make a move on the last row of a column.
     def test_makeMoveLastRow(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         expectedGameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [2, 0, 0, 0, 0, 0, 0],
@@ -93,7 +107,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Checks if the method can make a move as player 2.
     def test_makeMovePlayer2(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         expectedGameBoard = [
             [2, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -109,7 +125,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Checks if the method can make a move in the last row.
     def test_makeMoveLastCol(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         expectedGameBoard = [
             [0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 0],
@@ -126,7 +144,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing a winning combination in the first column.
     def test_checkUpDownFirstCol(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0],
@@ -139,7 +159,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing a winning combination in the last column.
     def test_checkUpDownLastCol(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 1],
@@ -151,7 +173,9 @@ class TestGameLogic(unittest.TestCase):
         self.assertEqual(newGame.checkUpDown(1), True, "Cant find a vertical winning combination on the game board.")
 
     def test_checkUpDownNoWinningCombo(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 1, 2, 2, 2, 1, 1],
             [0, 2, 1, 1, 2, 2, 1],
@@ -166,7 +190,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing a winning combination in the first row.
     def test_checkLeftRightFirstRow(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [1, 1, 1, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -179,7 +205,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing a winning combination for the last row.
     def test_checkLeftRightLastRow(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -191,7 +219,9 @@ class TestGameLogic(unittest.TestCase):
         self.assertEqual(newGame.checkLeftRight(1), True, "Cant find a horizontal winning combination on the board.")
     
     def test_checkLeftRightNoWin(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
 
         newGame.gameBoard = [
             [0, 1, 2, 2, 2, 1, 1],
@@ -207,7 +237,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing the checkNESW method on the first diagonal.
     def test_checkNESWFirstDiagonal(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0, 0],
@@ -220,7 +252,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing the checkNESW method on the last diagonal
     def test_checkNESWLastDiagonal(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -229,11 +263,13 @@ class TestGameLogic(unittest.TestCase):
             [0, 0, 0, 0, 1, 0, 0],
             [0, 0, 0, 1, 0, 0, 0]]
         
-        self.assertEqual(newGame.checkNESW(1), True, "Can't find a digaonal win condition")
+        self.assertEqual(newGame.checkNESW(1), True, "Can't find a diagonal win condition")
 
-    # Testing the code on a non winning combination
+    # Testing the code on a non-winning combination
     def test_checkNESWNoWin(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [1, 1, 1, 0, 0, 0, 0],
             [1, 1, 0, 0, 0, 0, 0],
@@ -248,7 +284,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing the checkNWSE method on a winning combination on the first diagonal.
     def test_checkNWSEFirstDiagonal(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -261,7 +299,9 @@ class TestGameLogic(unittest.TestCase):
     
     # Testing the checkNWSE method on a winning combination on the last diagonal.
     def test_checkNWSELastDiagonal(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0],
@@ -274,7 +314,9 @@ class TestGameLogic(unittest.TestCase):
 
     # Testing the checkNWSE method on a losing combination.
     def test_checkNWSENoWin(self):
-        newGame = Game("Player 1", "Player 2")
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
         newGame.gameBoard = [
             [0, 0, 0, 0, 1, 1, 1],
             [0, 0, 0, 0, 0, 1, 1],

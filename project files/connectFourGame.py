@@ -18,8 +18,8 @@ class Player:
         return move
     
     def setCounter(self, isPlayer1):
-        counter = (1 if isPlayer1 == True else 0)
-        name = ("Player 1" if isPlayer1 == True else "Player 2")
+        counter = (1 if isPlayer1 else 0)
+        name = ("Player 1" if isPlayer1 else "Player 2")
 
 
 class Game:
@@ -49,7 +49,7 @@ class Game:
         self.player2.setCounter(False)
 
     def whoIsPlaying(self):
-        return (self.player1.name if self.isPlayer1 == True else self.player2.name)
+        return self.player1.name if self.isPlayer1 else self.player2.name
 
     def checkWinCon(self, player):
         pass
