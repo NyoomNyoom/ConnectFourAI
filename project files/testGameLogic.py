@@ -50,7 +50,8 @@ class TestGameLogic(unittest.TestCase):
 
         self.assertEqual(newGame.checkMoveLegal(6), True, "Checker assumes legal move is illegal")
 
-    # Testing methods for makeMove. I will not be adding a testing method for illegal moves as with the way I am developing the code,
+    # Testing methods for makeMove. I will not be adding a testing method for illegal
+    # moves as with the way I am developing the code,they will not be making "no moves" / using the wrong counter etc.   
 
     # Tests if the method can make a move on an empty board.
     def test_makeMoveEmtpy(self):
@@ -159,7 +160,7 @@ class TestGameLogic(unittest.TestCase):
             [0, 0, 0, 2, 0, 2, 1],
             [0, 0, 0, 0, 0, 2, 1]]
         
-        self.assertEqual(newGame.checkUpDown(1), False, "Found a winning combination where there should not have been one.")
+        self.assertEqual(newGame.checkUpDown(1), False, "Found a winning combination when there shouldn't be one.")
 
     # Unit tests for checkLeftRight method.
 
