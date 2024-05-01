@@ -149,6 +149,18 @@ class TestGameLogic(unittest.TestCase):
 
         self.assertEqual(newGame.checkUpDown(1), True, "Cant find a vertical winning combination on the game board.")
 
+    def test_checkUpDownNoWinningCombo(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [0, 1, 2, 2, 2, 1, 1],
+            [0, 2, 1, 1, 2, 2, 1],
+            [0, 0, 0, 2, 1, 1, 1],
+            [0, 0, 0, 1, 1, 2, 2],
+            [0, 0, 0, 2, 0, 2, 1],
+            [0, 0, 0, 0, 0, 2, 1]]
+        
+        self.assertEqual(newGame.checkUpDown(1), False, "Found a winning combination where there should not have been one.")
+
     # Unit tests for checkLeftRight method.
 
     # Testing a winning combination in the first row.
@@ -176,6 +188,19 @@ class TestGameLogic(unittest.TestCase):
             [0, 0, 0, 1, 1, 1, 1]]
 
         self.assertEqual(newGame.checkLeftRight(1), True, "Cant find a horizontal winning combination on the board.")
+    
+    def test_checkLeftRightNoWin(self):
+        newGame = Game("Player 1", "Player 2")
+
+        newGame.gameBoard = [
+            [0, 1, 2, 2, 2, 1, 1],
+            [0, 2, 1, 1, 2, 2, 1],
+            [0, 0, 0, 2, 1, 1, 1],
+            [0, 0, 0, 1, 1, 2, 2],
+            [0, 0, 0, 2, 0, 2, 1],
+            [0, 0, 0, 0, 0, 2, 1]]
+        
+        self.assertEqual(newGame.checkLeftRight(1), False, "Found a winning combination when there shouldn't be one.")
     
     # Unit tests for checkNESW method (/ diagonal).
 
