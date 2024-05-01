@@ -5,6 +5,20 @@ from connectFourGame import Player
 
 class TestGameLogic(unittest.TestCase):
 
+    # Testing methods for whoIsPlaying method.
+    # Checks if method correctly reports Player 1 is playing.
+    def test_whoIsPlayingP1(self):
+        newGame = Game(Player("p1"), Player("p2"))
+
+        self.assertEqual(newGame.whoIsPlaying(), "Player 1", "Returned that player 2 is playing.")
+
+    # Checks if method correctly reports player 2 is playing.
+    def test_whoIsPlayingP2(self):
+        newGame = Game(Player("p1"), Player("p2"))
+        newGame.isPlayer1 = False
+
+        self.assertEqual(newGame.whoIsPlaying(), "Player 2", "Returned that player 1 is playing.")
+
     # Testing methods for the legal move checker.
 
     # Checks on empty board.
