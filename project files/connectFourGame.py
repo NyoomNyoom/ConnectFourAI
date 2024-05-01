@@ -6,6 +6,8 @@ __version__ = 1.0
 class Player:
     def __init__(self, agent):
         self.agent = agent
+        self.counter = None
+        self.name = ""
 
     def playGame(self):
         pass
@@ -14,6 +16,10 @@ class Player:
         move = self.agent.agentFunction()
 
         return move
+    
+    def setCounter(self, isPlayer1):
+        counter = (1 if isPlayer1 == True else 0)
+        name = ("Player 1" if isPlayer1 == True else "Player 2")
 
 
 class Game:
@@ -21,7 +27,7 @@ class Game:
     # The constructor for my game class.
     # Takes in a player class for player 1 and player 2. Initialises variables to default settings. Player 1 always
     # Starts the game.
-    def __init__(self, player1, player2):
+    def __init__(self, player1: Player, player2: Player):
         # Variables from parameters.
         self.player1 = player1
         self.player2 = player2
@@ -37,6 +43,13 @@ class Game:
                         [0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0]
                     ]
+        
+        # Sets the counter for player 1 and 2 and also sets their name.
+        self.player1.setCounter(True)
+        self.player2.setCounter(False)
+
+    def whoIsPlaying(self):
+        return (self.player1.name if self.isPlayer1 == True else self.player2.name)
 
     def checkWinCon(self, player):
         pass
@@ -57,8 +70,8 @@ class Game:
 
     # Makes the move in the given column if the move is legal. If the move is not legal, recursively call the makeMove
     # method.
-    def makeMove(self, colIn):
-        column = colIn
+    def makeMove(self, columnIn):
+        column = columnIn
         rowNum = 0
 
         while rowNum <= 5:
