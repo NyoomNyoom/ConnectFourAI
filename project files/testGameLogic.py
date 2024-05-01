@@ -164,6 +164,7 @@ class TestGameLogic(unittest.TestCase):
 
         self.assertEqual(newGame.checkLeftRight(1), True, "Cant find a horizontal winning combination on the board.")
 
+    # Testing a winning combination for the last row.
     def test_checkLeftRightLastRow(self):
         newGame = Game("Player 1", "Player 2")
         newGame.gameBoard = [
@@ -175,3 +176,18 @@ class TestGameLogic(unittest.TestCase):
             [0, 0, 0, 1, 1, 1, 1]]
 
         self.assertEqual(newGame.checkLeftRight(1), True, "Cant find a horizontal winning combination on the board.")
+    
+    # Unit tests for checkNESW method (/ diagonal).
+
+    # Testing the checkNESW method on the first diagonal.
+    def test_checkNESWFirstDiagonal(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]]
+        
+        self.assertEqual(newGame.checkNESW(1), True, "Can't find a diagonal win condition.")
