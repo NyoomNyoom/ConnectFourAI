@@ -216,3 +216,32 @@ class TestGameLogic(unittest.TestCase):
             [0, 0, 0, 0, 0, 0, 0]]
         
         self.assertEqual(newGame.checkNESW(1), True, "Can't find a diagonal win condition.")
+
+    # Testing the checkNESW method on the last diagonal
+    def test_checkNESWLastDiagonal(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 1, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0]]
+        
+        self.assertEqual(newGame.checkNESW(1), True, "Can't find a digaonal win condition")
+
+    # Testing the code on a non winning combination
+    def test_checkNESWNoWin(self):
+        newGame = Game("Player 1", "Player 2")
+        newGame.gameBoard = [
+            [1, 1, 1, 0, 0, 0, 0],
+            [1, 1, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 1, 1],
+            [0, 0, 0, 0, 1, 1, 1]]
+
+        self.assertEqual(newGame.checkNESW(1), False, "Found a winning combination on a board that doesn't contain one")
+
+    # Unit tests for checkNWSE diagonal (\)
+    
