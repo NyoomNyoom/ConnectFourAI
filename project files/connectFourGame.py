@@ -36,13 +36,12 @@ class Game:
         self.isPlayer1 = True
         self.turnsTaken = 0
         self.gameBoard = [  # The game board, which is being treated as a matrix :)
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0]
-                    ]
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0]]
         
         # Sets the counter for player 1 and 2 and also sets their name.
         self.player1.setCounter(True)
@@ -76,7 +75,7 @@ class Game:
 
         while rowNum <= 5:
             if self.gameBoard[rowNum][column] == 1 or self.gameBoard[rowNum][column] == 2:
-                rowNum +=1
+                rowNum += 1
             else:
                 break
 
@@ -111,7 +110,7 @@ class Game:
 
     # A method to check the diagonal North east South west (/)
     def checkNESW(self, playerCounter):
-        for rowNum in range(3,6):
+        for rowNum in range(3, 6):
             for colNum in range(4):
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     if self.gameBoard[rowNum - 3][colNum + 3] == playerCounter:
@@ -122,13 +121,11 @@ class Game:
 
     # A method to check the diagonal North west South East (\)
     def checkNWSE(self, playerCounter):
-        for rowNum in range(3,6):
-            for colNum in range(3,7):
+        for rowNum in range(3, 6):
+            for colNum in range(3, 7):
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     if self.gameBoard[rowNum - 3][colNum - 3] == playerCounter:
                         if self.gameBoard[rowNum - 2][colNum - 2] == playerCounter:
                             if self.gameBoard[rowNum - 1][colNum - 1] == playerCounter:
                                 return True
         return False
-
-
