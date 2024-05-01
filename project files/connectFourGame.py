@@ -18,8 +18,8 @@ class Player:
         return move
     
     def setCounter(self, isPlayer1):
-        counter = (1 if isPlayer1 else 0)
-        name = ("Player 1" if isPlayer1 else "Player 2")
+        self.counter = (1 if isPlayer1 else 0)
+        self.name = ("Player 1" if isPlayer1 else "Player 2")
 
 
 class Game:
