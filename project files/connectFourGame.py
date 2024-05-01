@@ -110,7 +110,7 @@ class Game:
     # A method to check the diagonal North west South East (\)
     def checkNWSE(self, playerCounter):
         for rowNum in range(3,6):
-            for colNum in range(3,8):
+            for colNum in range(3,7):
                 if self.gameBoard[rowNum][colNum] == playerCounter:
                     if self.gameBoard[rowNum - 3][colNum - 3] == playerCounter:
                         if self.gameBoard[rowNum - 2][colNum - 2] == playerCounter:
