@@ -9,9 +9,6 @@ class Player:
         self.counter = None
         self.name = ""
 
-    def playGame(self):
-        pass
-
     def getMove(self):
         move = self.agent.agentFunction()
 
