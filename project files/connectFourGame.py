@@ -8,6 +8,7 @@ class Player:
         self.agent = agent
         self.counter = None
         self.name = ""
+        self.idName = ""
 
     #def getMove(self):
     #    move = self.agent.agentFunction()
@@ -139,3 +140,39 @@ class Game:
                             if self.gameBoard[rowNum - 1][colNum - 1] == playerCounter:
                                 return True
         return False
+
+    # A method to run the game and enable the user to play against another user.
+    def playGame(self):
+        gameComplete = False
+
+        print("----------------------------------------------------------------------------------------------")
+        print("Welcome to connect four!")
+        print()
+        self.player1.idName = input("Please enter player 1's name:")
+        self.player2.idName = input("Please enter player 2's name:")
+        print("----------------------------------------------------------------------------------------------")
+        print(f"Thanks {self.player1.idName} and {self.player2.idName}.")
+        print("Please read the unstructions below on how to play.")
+        print("The game is going to look like: ")
+        print("1 2 3 4 5 6 7\n")
+        for row in self.gameBoard[::-1]:
+            for column in row:
+                print(f"{column}", end=" ")
+            print()
+        print("To make a move, just enter in the number of the column you would like to make a move in.")
+
+        print(f"{self.player1.idName} it is your turn!")
+        while(not gameComplete):
+            move = input()
+
+            self.checkMoveLegal(move)
+
+    def getMove(self):
+        move = int(input())
+        move -= 1
+
+        if(self.checkMoveLegal(move)):
+            return move
+        else:
+            print("Whoops! that column might already be full, please choose a different column")
+            self.getMove()
