@@ -9,10 +9,10 @@ class Player:
         self.counter = None
         self.name = ""
 
-    def getMove(self):
-        move = self.agent.agentFunction()
-
-        return move
+    #def getMove(self):
+    #    move = self.agent.agentFunction()
+    #
+    #    return move
     
     def setCounter(self, isPlayer1):
         self.counter = (1 if isPlayer1 else 0)
