@@ -50,8 +50,21 @@ class Game:
     def whoIsPlaying(self):
         return self.player1.name if self.isPlayer1 else self.player2.name
 
-    def checkWinCon(self, player):
-        pass
+    # A method to check if there is a winning combination on the game board.
+    def checkWinCon(self, player: Player):
+        playerCounter = player.counter
+
+        if self.checkLeftRight(playerCounter):
+            return True
+        elif self.checkUpDown(playerCounter):
+            return True
+        elif self.checkNESW(playerCounter):
+            return True
+        elif self.checkNWSE(playerCounter):
+            return True
+        else:
+            return False
+        
 
     # Checks if the move is legal, returns true if the move is legal, returns false if not.
     def checkMoveLegal(self, column):

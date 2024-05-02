@@ -341,3 +341,83 @@ class TestGameLogic(unittest.TestCase):
 
         self.assertEqual(newGame.checkNWSE(1), False, "Found a winning combination.")
         
+    # Unit tests for the checkWinCon method.
+    # Testing if the method reports a win for a left/right combination.
+    def test_checkWinConLeftRight(self):
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
+
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 0, 0, 0]]
+        
+        self.assertEqual(newGame.checkWinCon(player1), True, "Couldn't find a winning combination.")
+
+    # Testing if the method reports a win for an up/down combination
+    def test_checkWinConUpDown(self):
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
+
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0]]
+        
+        self.assertEqual(newGame.checkWinCon(player1), True, "Couldn't find a winning combination.")
+
+    # Testing if the method reports a win for a NESW combination.
+    def test_checkWinConNESW(self):
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
+
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0]]
+        
+        self.assertEqual(newGame.checkWinCon(player1), True, "Couldn't find a winning combination.")
+
+    # Testing if the method reports a win for NWSE combination.
+    def test_checkWinConNWSE(self):
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
+
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [1, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0]]
+        
+        self.assertEqual(newGame.checkWinCon(player1), True, "Couldn't find a winning combination.")
+
+    # Testing if the method reports no win when there isn't a win.
+    def test_checkWinConNoWin(self):
+        player1 = Player("agent")
+        player2 = Player("agent")
+        newGame = Game(player1, player2)
+
+        newGame.gameBoard = [
+            [0, 0, 0, 0, 1, 1, 1],
+            [0, 0, 0, 0, 0, 1, 1],
+            [0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0],
+            [1, 1, 0, 0, 0, 0, 0],
+            [1, 1, 1, 0, 0, 0, 0]]
+
+        self.assertEqual(newGame.checkWinCon(player1), False, "Found a winning combination on a losing board.")
