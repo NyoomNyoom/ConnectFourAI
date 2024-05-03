@@ -199,10 +199,3 @@ class Game:
             for column in row:
                 print(f"{column}", end=" ")
             print()
-
-
-player1 = Player("no agent")
-player2 = Player("no agent")
-
-game = Game(player1, player2)
-game.playGame()
