@@ -10,7 +10,7 @@ class Player:
         self.name = ""
         self.idName = ""
 
-    #def getMove(self):
+    # def getMove(self):
     #    move = self.agent.agentFunction()
     #
     #    return move
@@ -53,16 +53,19 @@ class Game:
         playerCounter = player.counter
 
         if self.checkLeftRight(playerCounter):
+            print("check left right")
             return True
         elif self.checkUpDown(playerCounter):
+            print("check up down")
             return True
         elif self.checkNESW(playerCounter):
+            print("check /")
             return True
         elif self.checkNWSE(playerCounter):
+            print("check \\")
             return True
         else:
             return False
-        
 
     # Checks if the move is legal, returns true if the move is legal, returns false if not.
     def checkMoveLegal(self, column):
@@ -152,27 +155,54 @@ class Game:
         self.player2.idName = input("Please enter player 2's name:")
         print("----------------------------------------------------------------------------------------------")
         print(f"Thanks {self.player1.idName} and {self.player2.idName}.")
-        print("Please read the unstructions below on how to play.")
+        print("Please read the instructions below on how to play.")
         print("The game is going to look like: ")
+
+        self.printGameBoard()
+
+        print("To make a move, just enter in the number of the column you would like to make a move in.")
+        print(f"{self.whoIsPlaying()} it is your turn!")
+
+        while not gameComplete:
+            self.printGameBoard()
+            move = self.getMove(int(input("Please enter the column that you would like to play a counter in."))-1, False)
+            currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
+            self.makeMove(move)
+
+            if self.turnsTaken >= 7:
+                if self.checkWinCon(currPlayer):
+                    print(f"Well done {currPlayer.idName}!!! You have won the game!")
+                    gameComplete = True
+                else:  # If the game is not won.
+                    self.turnsTaken += 1
+            else:  # if turns taken is less than 7.
+                self.turnsTaken += 1
+            print(f"{currPlayer.idName} it is your turn.")
+
+        self.printGameBoard()
+        print(f"Thanks for playing {self.player1.idName} and {self.player2.idName}!")
+        print("If you would like to play again, please run the program again :)")
+
+    # A method to get the move from a user recursively.
+    def getMove(self, moveIn, tryAgain):
+        if self.checkMoveLegal(moveIn):
+            return moveIn
+        else:
+            print("Whoops! that column is already full, please choose a different column")
+            self.printGameBoard()
+            return self.getMove(int(input("Please enter a new column to play a counter in."))-1, False)
+
+    # A method to print the game board.
+    def printGameBoard(self):
         print("1 2 3 4 5 6 7\n")
         for row in self.gameBoard[::-1]:
             for column in row:
                 print(f"{column}", end=" ")
             print()
-        print("To make a move, just enter in the number of the column you would like to make a move in.")
 
-        print(f"{self.player1.idName} it is your turn!")
-        while(not gameComplete):
-            move = input()
 
-            self.checkMoveLegal(move)
+player1 = Player("no agent")
+player2 = Player("no agent")
 
-    def getMove(self):
-        move = int(input())
-        move -= 1
-
-        if(self.checkMoveLegal(move)):
-            return move
-        else:
-            print("Whoops! that column might already be full, please choose a different column")
-            self.getMove()
+game = Game(player1, player2)
+game.playGame()
