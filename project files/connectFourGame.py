@@ -141,12 +141,6 @@ class Game:
                                 return True
         return False
 
-    # A method to run the game and enable the user to play against another user.
-    def playGame(self):
-        gameSettings = Settings()
-        if gameSettings.gameType == "cli":
-            self.commandLineGame()
-
     # A method to get the move from a user recursively.
     def getMove(self, moveIn):
         if self.checkMoveLegal(moveIn):
@@ -201,3 +195,10 @@ class Game:
         self.printGameBoard()
         print(f"Thanks for playing {self.player1.idName} and {self.player2.idName}!")
         print("If you would like to play again, please run the program again :)")
+
+    # A method to run the game and enable the user to play against another user.
+    def playGame(self):
+        gameSettings = Settings()
+        if gameSettings.gameType == "cli":
+            self.commandLineGame()
+        
