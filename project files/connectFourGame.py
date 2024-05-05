@@ -2,6 +2,7 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
+from settings import Settings
 
 class Player:
     def __init__(self, agent):
@@ -141,18 +142,19 @@ class Game:
         return False
 
     # A method to run the game and enable the user to play against another user.
-    def playGame(self, gameType):
-        if gameType == "cli":
+    def playGame(self):
+        gameSettings = Settings()
+        if gameSettings.gameType == "cli":
             self.commandLineGame()
 
     # A method to get the move from a user recursively.
-    def getMove(self, moveIn, tryAgain):
+    def getMove(self, moveIn):
         if self.checkMoveLegal(moveIn):
             return moveIn
         else:
             print("Whoops! that column is already full, please choose a different column")
             self.printGameBoard()
-            return self.getMove(int(input("Please enter a new column to play a counter in."))-1, False)
+            return self.getMove(int(input("Please enter a new column to play a counter in."))-1)
 
     # A method to print the game board.
     def printGameBoard(self):
@@ -182,8 +184,7 @@ class Game:
 
         while not gameComplete:
             self.printGameBoard()
-            move = self.getMove(int(input("Please enter the column that you would like to play a counter in.")) - 1,
-                                False)
+            move = self.getMove(int(input("Please enter the column that you would like to play a counter in.")) - 1)
             currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
             self.makeMove(move)
 
