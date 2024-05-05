@@ -141,7 +141,28 @@ class Game:
         return False
 
     # A method to run the game and enable the user to play against another user.
-    def playGame(self):
+    def playGame(self, gameType):
+        if gameType == "cli":
+            self.commandLineGame()
+
+    # A method to get the move from a user recursively.
+    def getMove(self, moveIn, tryAgain):
+        if self.checkMoveLegal(moveIn):
+            return moveIn
+        else:
+            print("Whoops! that column is already full, please choose a different column")
+            self.printGameBoard()
+            return self.getMove(int(input("Please enter a new column to play a counter in."))-1, False)
+
+    # A method to print the game board.
+    def printGameBoard(self):
+        print("1 2 3 4 5 6 7\n")
+        for row in self.gameBoard[::-1]:
+            for column in row:
+                print(f"{column}", end=" ")
+            print()
+
+    def commandLineGame(self):
         gameComplete = False
 
         print("----------------------------------------------------------------------------------------------")
@@ -161,7 +182,8 @@ class Game:
 
         while not gameComplete:
             self.printGameBoard()
-            move = self.getMove(int(input("Please enter the column that you would like to play a counter in."))-1, False)
+            move = self.getMove(int(input("Please enter the column that you would like to play a counter in.")) - 1,
+                                False)
             currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
             self.makeMove(move)
 
@@ -178,20 +200,3 @@ class Game:
         self.printGameBoard()
         print(f"Thanks for playing {self.player1.idName} and {self.player2.idName}!")
         print("If you would like to play again, please run the program again :)")
-
-    # A method to get the move from a user recursively.
-    def getMove(self, moveIn, tryAgain):
-        if self.checkMoveLegal(moveIn):
-            return moveIn
-        else:
-            print("Whoops! that column is already full, please choose a different column")
-            self.printGameBoard()
-            return self.getMove(int(input("Please enter a new column to play a counter in."))-1, False)
-
-    # A method to print the game board.
-    def printGameBoard(self):
-        print("1 2 3 4 5 6 7\n")
-        for row in self.gameBoard[::-1]:
-            for column in row:
-                print(f"{column}", end=" ")
-            print()
