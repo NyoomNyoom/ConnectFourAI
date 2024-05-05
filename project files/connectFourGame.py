@@ -16,7 +16,7 @@ class Player:
     #    return move
     
     def setCounter(self, isPlayer1):
-        self.counter = (1 if isPlayer1 else 0)
+        self.counter = (1 if isPlayer1 else 2)
         self.name = ("Player 1" if isPlayer1 else "Player 2")
 
 
@@ -53,16 +53,12 @@ class Game:
         playerCounter = player.counter
 
         if self.checkLeftRight(playerCounter):
-            print("check left right")
             return True
         elif self.checkUpDown(playerCounter):
-            print("check up down")
             return True
         elif self.checkNESW(playerCounter):
-            print("check /")
             return True
         elif self.checkNWSE(playerCounter):
-            print("check \\")
             return True
         else:
             return False
