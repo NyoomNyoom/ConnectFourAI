@@ -3,6 +3,8 @@ __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
 from settings import Settings
+import tkinter
+
 
 class Player:
     def __init__(self, agent):
@@ -201,4 +203,3 @@ class Game:
         gameSettings = Settings()
         if gameSettings.gameType == "cli":
             self.commandLineGame()
-        
