@@ -2,18 +2,19 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
+from userAgent import UserAgent
 
 class Player:
-    def __init__(self, agent):
+    def __init__(self, agent: UserAgent):
         self.agent = agent
         self.counter = None
         self.name = ""
         self.idName = ""
 
-    # def getMove(self):
-    #    move = self.agent.agentFunction()
-    #
-    #    return move
+    def getMove(self):
+        move = self.agent.agentFunction()
+
+        return move
     
     def setCounter(self, isPlayer1):
         self.counter = (1 if isPlayer1 else 2)
@@ -27,8 +28,8 @@ class Game:
     # Starts the game.
     def __init__(self, player1: Player, player2: Player):
         # Variables from parameters.
-        self.player1 = player1
-        self.player2 = player2
+        self.player1: Player = player1
+        self.player2: Player = player2
 
         # Variables with default values each time.
         self.isPlayer1 = True
@@ -46,7 +47,7 @@ class Game:
         self.player2.setCounter(False)
 
     def whoIsPlaying(self):
-        return self.player1.name if self.isPlayer1 else self.player2.name
+        return self.player1 if self.isPlayer1 else self.player2
 
     # A method to check if there is a winning combination on the game board.
     def checkWinCon(self, player: Player):
@@ -157,11 +158,10 @@ class Game:
         self.printGameBoard()
 
         print("To make a move, just enter in the number of the column you would like to make a move in.")
-        print(f"{self.whoIsPlaying()} it is your turn!")
 
         while not gameComplete:
             self.printGameBoard()
-            move = self.getMove(int(input("Please enter the column that you would like to play a counter in."))-1, False)
+            move = self.getMove(self.whoIsPlaying().getMove(), False)
             currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
             self.makeMove(move)
 
