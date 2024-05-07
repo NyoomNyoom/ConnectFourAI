@@ -2,14 +2,13 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
-from userAgent import UserAgent
 
 class Player:
-    def __init__(self, agent: UserAgent):
+    def __init__(self, agent):
         self.agent = agent
         self.counter = None
         self.name = ""
-        self.idName = ""
+        self.idName = self.agent.name
 
     def getMove(self):
         move = self.agent.agentFunction()
@@ -147,9 +146,6 @@ class Game:
 
         print("----------------------------------------------------------------------------------------------")
         print("Welcome to connect four!")
-        print()
-        self.player1.idName = input("Please enter player 1's name:")
-        self.player2.idName = input("Please enter player 2's name:")
         print("----------------------------------------------------------------------------------------------")
         print(f"Thanks {self.player1.idName} and {self.player2.idName}.")
         print("Please read the instructions below on how to play.")
@@ -161,7 +157,7 @@ class Game:
 
         while not gameComplete:
             self.printGameBoard()
-            move = self.getMove(self.whoIsPlaying().getMove(), False)
+            move = self.moveHandler(self.whoIsPlaying().getMove(), False)
             currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
             self.makeMove(move)
 
@@ -180,13 +176,13 @@ class Game:
         print("If you would like to play again, please run the program again :)")
 
     # A method to get the move from a user recursively.
-    def getMove(self, moveIn, tryAgain):
+    def moveHandler(self, moveIn, tryAgain):
         if self.checkMoveLegal(moveIn):
             return moveIn
         else:
             print("Whoops! that column is already full, please choose a different column")
             self.printGameBoard()
-            return self.getMove(int(input("Please enter a new column to play a counter in."))-1, False)
+            return self.moveHandler(self.whoIsPlaying().getMove(), False)
 
     # A method to print the game board.
     def printGameBoard(self):
