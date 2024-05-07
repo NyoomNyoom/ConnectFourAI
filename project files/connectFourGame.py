@@ -8,12 +8,12 @@ class Player:
         self.agent = agent
         self.counter = None
         self.name = ""
-        self.idName = ""
+        self.idName = self.agent.name
 
-    # def getMove(self):
-    #    move = self.agent.agentFunction()
-    #
-    #    return move
+    def getMove(self):
+        move = self.agent.agentFunction()
+
+        return move
     
     def setCounter(self, isPlayer1):
         self.counter = (1 if isPlayer1 else 2)
@@ -27,8 +27,8 @@ class Game:
     # Starts the game.
     def __init__(self, player1: Player, player2: Player):
         # Variables from parameters.
-        self.player1 = player1
-        self.player2 = player2
+        self.player1: Player = player1
+        self.player2: Player = player2
 
         # Variables with default values each time.
         self.isPlayer1 = True
@@ -46,7 +46,7 @@ class Game:
         self.player2.setCounter(False)
 
     def whoIsPlaying(self):
-        return self.player1.name if self.isPlayer1 else self.player2.name
+        return self.player1 if self.isPlayer1 else self.player2
 
     # A method to check if there is a winning combination on the game board.
     def checkWinCon(self, player: Player):
@@ -146,9 +146,6 @@ class Game:
 
         print("----------------------------------------------------------------------------------------------")
         print("Welcome to connect four!")
-        print()
-        self.player1.idName = input("Please enter player 1's name:")
-        self.player2.idName = input("Please enter player 2's name:")
         print("----------------------------------------------------------------------------------------------")
         print(f"Thanks {self.player1.idName} and {self.player2.idName}.")
         print("Please read the instructions below on how to play.")
@@ -157,11 +154,10 @@ class Game:
         self.printGameBoard()
 
         print("To make a move, just enter in the number of the column you would like to make a move in.")
-        print(f"{self.whoIsPlaying()} it is your turn!")
 
         while not gameComplete:
             self.printGameBoard()
-            move = self.getMove(int(input("Please enter the column that you would like to play a counter in."))-1, False)
+            move = self.moveHandler(self.whoIsPlaying().getMove(), False)
             currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
             self.makeMove(move)
 
@@ -180,13 +176,13 @@ class Game:
         print("If you would like to play again, please run the program again :)")
 
     # A method to get the move from a user recursively.
-    def getMove(self, moveIn, tryAgain):
+    def moveHandler(self, moveIn, tryAgain):
         if self.checkMoveLegal(moveIn):
             return moveIn
         else:
             print("Whoops! that column is already full, please choose a different column")
             self.printGameBoard()
-            return self.getMove(int(input("Please enter a new column to play a counter in."))-1, False)
+            return self.moveHandler(self.whoIsPlaying().getMove(), False)
 
     # A method to print the game board.
     def printGameBoard(self):
