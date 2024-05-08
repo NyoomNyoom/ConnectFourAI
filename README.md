@@ -3,4 +3,4 @@
 [![codecov](https://codecov.io/github/NyoomNyoom/ConnectFourAI/graph/badge.svg?token=OAAV8T25YP)](https://codecov.io/github/NyoomNyoom/ConnectFourAI)
 ## About
 
-Making of a connect four AI. I am going to be using all my own code base, I will be making my own game, random agent, a normal search ai, and then a genetic algorithm. I have also added unit testing for all my code. This is to ensure that my code is running correctly and as expected.
+This is the github repo for a connect four AI project that I am working on. All the code I write will be tested to make sure that it works thourghly. Firstly I have had to make my own game for the ai to actually play, and now I am working on creating a more visual version of the game and also working on a random "AI" to play the game by placing a counter in a random column each time.
