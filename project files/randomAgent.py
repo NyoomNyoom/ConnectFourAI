@@ -5,4 +5,4 @@ class RandomAgent:
         self.name = "Random Agent"
 
     def agentFunction(self):
-        return ran.randint(1,7)
+        return ran.randint(0,6)
