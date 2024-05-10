@@ -1,8 +1,8 @@
 from connectFourGame import Game, Player
 from userAgent import UserAgent
+from randomAgent import RandomAgent
 
 player1Name = input("Please enter player 1's name: ")
-player2Name = input("Please enter player 2's name: ")
 
-game = Game(Player(UserAgent(player1Name)), Player(UserAgent(player2Name)))
+game = Game(Player(UserAgent(player1Name)), Player(RandomAgent()))
 game.playGame()
