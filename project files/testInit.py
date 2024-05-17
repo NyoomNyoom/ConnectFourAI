@@ -11,7 +11,8 @@ class TestGameInit(unittest.TestCase):
     def test_gameboardINIT(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         gameBoardTest = [
                         [0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0],
@@ -26,7 +27,7 @@ class TestGameInit(unittest.TestCase):
     def test_player1nameINIT(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         self.assertEqual(newGame.player1.name, "Player 1", "Player 1 name not set correctly.")
 
@@ -34,7 +35,7 @@ class TestGameInit(unittest.TestCase):
     def test_player2nameINIT(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         self.assertEqual(newGame.player2.name, "Player 2", "Player 2 name not set correctly.")
 
@@ -42,7 +43,7 @@ class TestGameInit(unittest.TestCase):
     def test_turnsTakenINIT(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         self.assertEqual(newGame.turnsTaken, 0)
 
@@ -50,7 +51,7 @@ class TestGameInit(unittest.TestCase):
     def test_playerSelection(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         self.assertEqual(newGame.isPlayer1, True, "Player 1 not selected at game start.")
 

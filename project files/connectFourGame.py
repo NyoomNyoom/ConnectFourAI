@@ -25,10 +25,11 @@ class Game:
     # The constructor for my game class.
     # Takes in a player class for player 1 and player 2. Initialises variables to default settings. Player 1 always
     # Starts the game.
-    def __init__(self, player1: Player, player2: Player):
+    def __init__(self, player1: Player, player2: Player, gameType: str):
         # Variables from parameters.
         self.player1: Player = player1
         self.player2: Player = player2
+        self.gameType = gameType
 
         # Variables with default values each time.
         self.isPlayer1 = True
@@ -191,3 +192,6 @@ class Game:
             for column in row:
                 print(f"{column}", end=" ")
             print()
+
+    def output(self):
+        pass

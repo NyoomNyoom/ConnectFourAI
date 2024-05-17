@@ -9,13 +9,13 @@ class TestGameLogic(unittest.TestCase):
     # Testing methods for whoIsPlaying method.
     # Checks if method correctly reports Player 1 is playing.
     def test_whoIsPlayingP1(self):
-        newGame = Game(Player(UserAgent("p1")), Player(UserAgent("p2")))
+        newGame = Game(Player(UserAgent("p1")), Player(UserAgent("p2")), "cli")
 
         self.assertEqual(newGame.whoIsPlaying().idName, "p1", "Returned that player 2 is playing.")
 
     # Checks if method correctly reports player 2 is playing.
     def test_whoIsPlayingP2(self):
-        newGame = newGame = Game(Player(UserAgent("p1")), Player(UserAgent("p2")))
+        newGame = Game(Player(UserAgent("p1")), Player(UserAgent("p2")), "cli")
         newGame.isPlayer1 = False
 
         self.assertEqual(newGame.whoIsPlaying().idName, "p2", "Returned that player 1 is playing.")
@@ -26,7 +26,7 @@ class TestGameLogic(unittest.TestCase):
     def test_moveCheckerEmpty(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         self.assertEqual(newGame.checkMoveLegal(0), True, "Checker assumes legal move is illegal")
 
@@ -34,7 +34,8 @@ class TestGameLogic(unittest.TestCase):
     def test_moveCheckerLastRow(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0],
@@ -49,7 +50,8 @@ class TestGameLogic(unittest.TestCase):
     def test_moveCheckerIllegalMove(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0],
@@ -64,7 +66,8 @@ class TestGameLogic(unittest.TestCase):
     def test_moveCheckerLastRowLastCol(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 1],
@@ -82,7 +85,8 @@ class TestGameLogic(unittest.TestCase):
     def test_makeMoveEmtpy(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         expectedGameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -99,7 +103,8 @@ class TestGameLogic(unittest.TestCase):
     def test_makeMoveLastRow(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         expectedGameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [2, 0, 0, 0, 0, 0, 0],
@@ -124,7 +129,8 @@ class TestGameLogic(unittest.TestCase):
     def test_makeMovePlayer2(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         expectedGameBoard = [
             [2, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -142,7 +148,8 @@ class TestGameLogic(unittest.TestCase):
     def test_makeMoveLastCol(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         expectedGameBoard = [
             [0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 0],
@@ -161,7 +168,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkUpDownFirstCol(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [1, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0],
@@ -176,7 +184,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkUpDownLastCol(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+       
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 1],
@@ -190,7 +199,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkUpDownNoWinningCombo(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 1, 2, 2, 2, 1, 1],
             [0, 2, 1, 1, 2, 2, 1],
@@ -207,7 +217,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkLeftRightFirstRow(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [1, 1, 1, 1, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -222,7 +233,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkLeftRightLastRow(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -236,7 +248,7 @@ class TestGameLogic(unittest.TestCase):
     def test_checkLeftRightNoWin(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         newGame.gameBoard = [
             [0, 1, 2, 2, 2, 1, 1],
@@ -254,7 +266,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkNESWFirstDiagonal(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0, 0],
@@ -269,7 +282,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkNESWLastDiagonal(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -284,7 +298,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkNESWNoWin(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [1, 1, 1, 0, 0, 0, 0],
             [1, 1, 0, 0, 0, 0, 0],
@@ -301,7 +316,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkNWSEFirstDiagonal(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -316,7 +332,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkNWSELastDiagonal(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 1, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0],
@@ -331,7 +348,8 @@ class TestGameLogic(unittest.TestCase):
     def test_checkNWSENoWin(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
+
         newGame.gameBoard = [
             [0, 0, 0, 0, 1, 1, 1],
             [0, 0, 0, 0, 0, 1, 1],
@@ -347,7 +365,7 @@ class TestGameLogic(unittest.TestCase):
     def test_checkWinConLeftRight(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
@@ -363,7 +381,7 @@ class TestGameLogic(unittest.TestCase):
     def test_checkWinConUpDown(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
@@ -379,7 +397,7 @@ class TestGameLogic(unittest.TestCase):
     def test_checkWinConNESW(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
@@ -395,7 +413,7 @@ class TestGameLogic(unittest.TestCase):
     def test_checkWinConNWSE(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
@@ -411,7 +429,7 @@ class TestGameLogic(unittest.TestCase):
     def test_checkWinConNoWin(self):
         player1 = Player(UserAgent("p1"))
         player2 = Player(UserAgent("p2"))
-        newGame = Game(player1, player2)
+        newGame = Game(player1, player2 ,"cli")
 
         newGame.gameBoard = [
             [0, 0, 0, 0, 1, 1, 1],
