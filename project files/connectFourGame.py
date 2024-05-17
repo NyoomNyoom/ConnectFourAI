@@ -145,16 +145,16 @@ class Game:
     def playGame(self):
         gameComplete = False
 
-        print("----------------------------------------------------------------------------------------------")
-        print("Welcome to connect four!")
-        print("----------------------------------------------------------------------------------------------")
-        print(f"Thanks {self.player1.idName} and {self.player2.idName}.")
-        print("Please read the instructions below on how to play.")
-        print("The game is going to look like: ")
+        self.output("----------------------------------------------------------------------------------------------")
+        self.output("Welcome to connect four!")
+        self.output("----------------------------------------------------------------------------------------------")
+        self.output(f"Thanks {self.player1.idName} and {self.player2.idName}.")
+        self.output("Please read the instructions below on how to play.")
+        self.output("The game is going to look like: ")
 
         self.printGameBoard()
 
-        print("To make a move, just enter in the number of the column you would like to make a move in.")
+        self.output("To make a move, just enter in the number of the column you would like to make a move in.")
 
         while not gameComplete:
             self.printGameBoard()
@@ -164,7 +164,7 @@ class Game:
 
             if self.turnsTaken >= 7:
                 if self.checkWinCon(currPlayer):
-                    print(f"Well done {currPlayer.idName}!!! You have won the game!")
+                    self.output(f"Well done {currPlayer.idName}!!! You have won the game!")
                     gameComplete = True
                 else:  # If the game is not won.
                     self.turnsTaken += 1
@@ -173,15 +173,15 @@ class Game:
             print(f"{currPlayer.idName} it is your turn.")
 
         self.printGameBoard()
-        print(f"Thanks for playing {self.player1.idName} and {self.player2.idName}!")
-        print("If you would like to play again, please run the program again :)")
+        self.output(f"Thanks for playing {self.player1.idName} and {self.player2.idName}!")
+        self.output("If you would like to play again, please run the program again :)")
 
     # A method to get the move from a user recursively.
     def moveHandler(self, moveIn, tryAgain):
         if self.checkMoveLegal(moveIn):
             return moveIn
         else:
-            print("Whoops! that column is already full, please choose a different column")
+            self.output("Whoops! that column is already full, please choose a different column")
             self.printGameBoard()
             return self.moveHandler(self.whoIsPlaying().getMove(), False)
 
@@ -190,8 +190,11 @@ class Game:
         print("1 2 3 4 5 6 7\n")
         for row in self.gameBoard[::-1]:
             for column in row:
-                print(f"{column}", end=" ")
-            print()
+                self.output(f"{column}", end=" ")
+            self.output("")
 
-    def output(self):
-        pass
+    def output(self, textIn):
+        if self.gameType == "cli":
+            print(textIn)
+        elif self.gameType =="visual":
+            pass  
