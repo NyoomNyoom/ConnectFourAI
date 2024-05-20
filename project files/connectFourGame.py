@@ -193,6 +193,8 @@ class Game:
                 self.output(f"{column}", end=" ")
             self.output("")
 
+    # A method to output the text that is parsed into it. It will use the command line if the game type is CLI,
+    # and it will use tkinter if the game type is visual.
     def output(self, textIn):
         if self.gameType == "cli":
             print(textIn)
