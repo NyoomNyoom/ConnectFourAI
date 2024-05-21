@@ -203,15 +203,9 @@ class Game:
             self.printGameBoard()
             return self.moveHandler(self.whoIsPlaying().getMove(), False)
 
-    # A method to print the game board.
-    def printGameBoard(self):
-        print("1 2 3 4 5 6 7\n")
-        for row in self.gameBoard[::-1]:
-            for column in row:
-                print(f"{column}", end=" ")
-            print()
     # A method to run the game and enable the user to play against another user.
     def playGame(self):
         gameSettings = Settings()
         if gameSettings.gameType == "cli":
             self.commandLineGame()
+    
