@@ -2,6 +2,9 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
+from settings import Settings
+import tkinter
+
 
 class Player:
     def __init__(self, agent):
@@ -140,8 +143,24 @@ class Game:
                                 return True
         return False
 
-    # A method to run the game and enable the user to play against another user.
-    def playGame(self):
+    # A method to get the move from a user recursively.
+    def getMove(self, moveIn):
+        if self.checkMoveLegal(moveIn):
+            return moveIn
+        else:
+            print("Whoops! that column is already full, please choose a different column")
+            self.printGameBoard()
+            return self.getMove(int(input("Please enter a new column to play a counter in."))-1)
+
+    # A method to print the game board.
+    def printGameBoard(self):
+        print("1 2 3 4 5 6 7\n")
+        for row in self.gameBoard[::-1]:
+            for column in row:
+                print(f"{column}", end=" ")
+            print()
+
+    def commandLineGame(self):
         gameComplete = False
 
         print("----------------------------------------------------------------------------------------------")
@@ -191,3 +210,8 @@ class Game:
             for column in row:
                 print(f"{column}", end=" ")
             print()
+    # A method to run the game and enable the user to play against another user.
+    def playGame(self):
+        gameSettings = Settings()
+        if gameSettings.gameType == "cli":
+            self.commandLineGame()
