@@ -208,4 +208,3 @@ class Game:
         gameSettings = Settings()
         if gameSettings.gameType == "cli":
             self.commandLineGame()
-    
