@@ -3,10 +3,12 @@ import tkinter as tk
 
 class Gui:
     def __init__(self):
-        pass
+        self.window = tk.Tk()
+        self.window.title("Connect Four")
+        self.window.config(bg="lightgrey")
 
     def startGame(self):
-        pass
+        self.window.mainloop()
 
     def playerSelection(self):
         pass
@@ -16,3 +18,8 @@ class Gui:
 
     def updateGameScreen(self):
         pass
+
+if __name__ == '__main__':
+    guiRun = Gui()
+    guiRun.startGame()
+    
