@@ -29,7 +29,12 @@ class Gui:
         self.window.mainloop()
 
     def playerSelection(self):
-        pass
+        for child in self.window.winfo_children():
+            child.destroy()
+        headingText = tk.Label(text="Please select the players for the game from the drop down lists below.")
+        headingText.pack()
+
+        self.window.mainloop()
 
     def gameScreen(self):
         pass
