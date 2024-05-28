@@ -29,10 +29,17 @@ class Gui:
         self.window.mainloop()
 
     def playerSelection(self):
+        options = ["Player", "Random AI"]
+
+        defaultSelect = tk.StringVar()
+        defaultSelect.set("Player")
+
+        optionList = tk.OptionMenu(self.window, defaultSelect, *options)
         for child in self.window.winfo_children():
             child.destroy()
         headingText = tk.Label(text="Please select the players for the game from the drop down lists below.")
         headingText.pack()
+        optionList.pack()
 
         self.window.mainloop()
 
