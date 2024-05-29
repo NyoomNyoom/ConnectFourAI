@@ -3,7 +3,6 @@ __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
 from settings import Settings
-import tkinter
 
 
 class Player:
@@ -49,6 +48,10 @@ class Game:
         self.player2.setCounter(False)
 
     def whoIsPlaying(self):
+        """
+        A method to determine which players turn it is.
+        :return: the Player object of who is playing.
+        """
         return self.player1 if self.isPlayer1 else self.player2
 
     # A method to check if there is a winning combination on the game board.
