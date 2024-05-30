@@ -1,11 +1,14 @@
 import tkinter as tk
+from connectFourGame import Game
 
 
 class Gui:
-    def __init__(self):
+    def __init__(self, gameIn: Game):
         self.window = tk.Tk()
         self.window.title("Connect Four")
         self.window.config(bg="lightgrey")
+
+        self.game = gameIn
 
     def startGame(self):
         def buttonClicked():
@@ -34,17 +37,20 @@ class Gui:
         defaultSelect = tk.StringVar()
         defaultSelect.set("Player")
 
-        optionList = tk.OptionMenu(self.window, defaultSelect, *options)
+
         for child in self.window.winfo_children():
             child.destroy()
+
         headingText = tk.Label(text="Please select the players for the game from the drop down lists below.")
         headingText.pack()
+
+        optionList = tk.OptionMenu(self.window, defaultSelect, *options)
         optionList.pack()
 
         self.window.mainloop()
 
     def gameScreen(self):
-        pass
+        self.game.whoIsPlaying()
 
     def updateGameScreen(self):
         pass
