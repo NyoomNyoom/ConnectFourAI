@@ -37,7 +37,6 @@ class Gui:
         defaultSelect = tk.StringVar()
         defaultSelect.set("Player")
 
-
         for child in self.window.winfo_children():
             child.destroy()
 
@@ -54,6 +53,10 @@ class Gui:
 
     def updateGameScreen(self):
         pass
+
+    def clearScreen(self, screen: tk.Tk):
+        for child in screen.winfo_children():
+            child.destroy()
 
 
 if __name__ == '__main__':
