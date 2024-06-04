@@ -37,10 +37,14 @@ class Gui:
     def playerSelection(self):
         self.clearScreen(self.window)
 
+        def playClicked():
+            self.gameScreen()
+
         titleFrame = tk.Frame()
         headingFrame = tk.Frame()
         player1Frame = tk.Frame()
         player2Frame = tk.Frame()
+        playFrame = tk.Frame()
 
         options = ["Player", "Random AI"]
         defaultSelect = tk.StringVar()
@@ -65,10 +69,14 @@ class Gui:
         option2List = tk.OptionMenu(player2Frame, defaultSelect, *options)
         option2List.pack()
 
+        playbtn = tk.Button(text="Play", master=playFrame, command=playClicked)
+        playbtn.pack()
+
         titleFrame.pack()
         headingFrame.pack()
         player1Frame.pack()
         player2Frame.pack()
+        playFrame.pack()
 
         self.window.mainloop()
 
