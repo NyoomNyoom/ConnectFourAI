@@ -1,5 +1,8 @@
 import tkinter as tk
 from connectFourGame import Game
+from connectFourGame import Player
+from userAgent import UserAgent
+from randomAgent import RandomAgent
 
 
 class Gui:
@@ -32,19 +35,40 @@ class Gui:
         self.window.mainloop()
 
     def playerSelection(self):
-        options = ["Player", "Random AI"]
+        self.clearScreen(self.window)
 
+        titleFrame = tk.Frame()
+        headingFrame = tk.Frame()
+        player1Frame = tk.Frame()
+        player2Frame = tk.Frame()
+
+        options = ["Player", "Random AI"]
         defaultSelect = tk.StringVar()
         defaultSelect.set("Player")
 
-        for child in self.window.winfo_children():
-            child.destroy()
+        titleText = tk.Label(text="Player Selection", font=("Arial", 30), master=titleFrame)
+        titleText.pack()
 
-        headingText = tk.Label(text="Please select the players for the game from the drop down lists below.")
-        headingText.pack()
+        informationText = tk.Label(text="Please select the players for the game from the drop down lists below.",
+                                   master=headingFrame)
+        informationText.pack()
 
-        optionList = tk.OptionMenu(self.window, defaultSelect, *options)
+        player1Text = tk.Label(text="Please select a player type for player 1: ", master=player1Frame)
+        player1Text.pack()
+
+        optionList = tk.OptionMenu(player1Frame, defaultSelect, *options)
         optionList.pack()
+
+        player2Text = tk.Label(text="Please select a player type for player 2: ", master=player2Frame)
+        player2Text.pack()
+
+        option2List = tk.OptionMenu(player2Frame, defaultSelect, *options)
+        option2List.pack()
+
+        titleFrame.pack()
+        headingFrame.pack()
+        player1Frame.pack()
+        player2Frame.pack()
 
         self.window.mainloop()
 
@@ -60,5 +84,9 @@ class Gui:
 
 
 if __name__ == '__main__':
-    guiRun = Gui()
-    guiRun.startGame()
+    player1 = Player(UserAgent("p1"))
+    player2 = Player(UserAgent("p2"))
+    newGame = Game(player1, player2)
+
+    guiRun = Gui(newGame)
+    guiRun.playerSelection()
