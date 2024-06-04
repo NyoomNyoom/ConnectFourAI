@@ -50,6 +50,10 @@ class Gui:
         defaultSelect = tk.StringVar()
         defaultSelect.set("Player")
 
+        options2 = ["Player", "Random AI"]
+        defaultSelect2 = tk.StringVar()
+        defaultSelect2.set("Player")
+
         titleText = tk.Label(text="Player Selection", font=("Arial", 30), master=titleFrame)
         titleText.pack()
 
@@ -66,7 +70,7 @@ class Gui:
         player2Text = tk.Label(text="Please select a player type for player 2: ", master=player2Frame)
         player2Text.pack()
 
-        option2List = tk.OptionMenu(player2Frame, defaultSelect, *options)
+        option2List = tk.OptionMenu(player2Frame, defaultSelect2, *options2)
         option2List.pack()
 
         playbtn = tk.Button(text="Play", master=playFrame, command=playClicked)
