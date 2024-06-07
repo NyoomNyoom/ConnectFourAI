@@ -85,10 +85,33 @@ class Gui:
         self.window.mainloop()
 
     def gameScreen(self):
-        self.game.whoIsPlaying()
+        self.clearScreen(self.window)
 
-    def updateGameScreen(self):
-        pass
+        board = tk.Canvas()
+
+        board.create_rectangle(0, 0, 600, 700, fill="blue")
+        self.updateGameScreen(self.game.gameBoard, board)
+        board.pack()
+        self.window.mainloop()
+
+    def updateGameScreen(self, gameBoardIn, background: tk.Canvas):
+        gameBoard = gameBoardIn
+
+        rowNum = 0
+        colNum = 0
+
+        for row in gameBoard:
+            for space in row:
+                if space == 0:
+                    background.create_oval(colNum*40,rowNum*40, (colNum+1)*40, (rowNum+1)*40, fill="white")
+                elif space == 1:
+                    background.create_oval(colNum * 40, rowNum * 40, (colNum + 1) * 40, (rowNum + 1) * 40, fill="yellow")
+                elif space == 2:
+                    background.create_oval(colNum * 40, rowNum * 40, (colNum + 1) * 40, (rowNum + 1) * 40, fill="red")
+                colNum += 1
+            rowNum += 1
+            colNum = 0
+
 
     def clearScreen(self, screen: tk.Tk):
         for child in screen.winfo_children():
@@ -101,4 +124,4 @@ if __name__ == '__main__':
     newGame = Game(player1, player2)
 
     guiRun = Gui(newGame)
-    guiRun.playerSelection()
+    guiRun.gameScreen()
