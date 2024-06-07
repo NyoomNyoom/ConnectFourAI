@@ -46,6 +46,7 @@ class Game:
         # Sets the counter for player 1 and 2 and also sets their name.
         self.player1.setCounter(True)
         self.player2.setCounter(False)
+        self.isGameWon = False
 
     def whoIsPlaying(self):
         """
@@ -59,12 +60,16 @@ class Game:
         playerCounter = player.counter
 
         if self.checkLeftRight(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkUpDown(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkNESW(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkNWSE(playerCounter):
+            self.isGameWon = True
             return True
         else:
             return False
