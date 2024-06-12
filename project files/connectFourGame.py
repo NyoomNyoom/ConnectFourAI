@@ -210,9 +210,3 @@ class Game:
             print("Whoops! that column is already full, please choose a different column")
             self.printGameBoard()
             return self.moveHandler(self.whoIsPlaying().getMove(), False)
-
-    # A method to run the game and enable the user to play against another user.
-    def playGame(self):
-        gameSettings = Settings()
-        if gameSettings.gameType == "cli":
-            self.commandLineGame()

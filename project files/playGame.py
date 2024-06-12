@@ -1,6 +1,11 @@
-from connectFourGame import Game, Player
-from userAgent import UserAgent
-from randomAgent import RandomAgent
+from gui import Gui
 
-game = Game(Player(UserAgent("Jackson")), Player(RandomAgent()))
-game.playGame()
+from settings import Settings
+
+gameSettings = Settings()
+
+if gameSettings.gameType == "cli":
+    pass
+elif gameSettings.gameType == "gui":
+    game = Gui()
+    game.startGame()
