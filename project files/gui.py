@@ -85,14 +85,18 @@ class Gui:
         self.window.mainloop()
 
     def gameScreen(self):
-        self.clearScreen(self.window)
+        while not self.game.isGameWon:
+            self.clearScreen(self.window)
 
-        board = tk.Canvas()
+            board = tk.Canvas()
+            board.create_rectangle(0, 0, 600, 700, fill="blue")
 
-        board.create_rectangle(0, 0, 600, 700, fill="blue")
-        self.updateGameScreen(self.game.gameBoard, board)
-        board.pack()
-        self.window.mainloop()
+            self.game.playGame()
+
+            self.updateGameScreen(self.game.gameBoard, board)
+            board.pack()
+
+            self.window.mainloop()
 
     def updateGameScreen(self, gameBoardIn, background: tk.Canvas):
         gameBoard = gameBoardIn
@@ -111,7 +115,6 @@ class Gui:
                 colNum += 1
             rowNum += 1
             colNum = 0
-
 
     def clearScreen(self, screen: tk.Tk):
         for child in screen.winfo_children():
