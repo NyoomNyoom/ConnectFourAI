@@ -2,6 +2,8 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
+from settings import Settings
+
 
 class Player:
     def __init__(self, agent):
@@ -44,8 +46,13 @@ class Game:
         # Sets the counter for player 1 and 2 and also sets their name.
         self.player1.setCounter(True)
         self.player2.setCounter(False)
+        self.isGameWon = False
 
     def whoIsPlaying(self):
+        """
+        A method to determine which players turn it is.
+        :return: the Player object of who is playing.
+        """
         return self.player1 if self.isPlayer1 else self.player2
 
     # A method to check if there is a winning combination on the game board.
@@ -53,12 +60,16 @@ class Game:
         playerCounter = player.counter
 
         if self.checkLeftRight(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkUpDown(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkNESW(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkNWSE(playerCounter):
+            self.isGameWon = True
             return True
         else:
             return False
@@ -140,8 +151,24 @@ class Game:
                                 return True
         return False
 
-    # A method to run the game and enable the user to play against another user.
-    def playGame(self):
+    # A method to get the move from a user recursively.
+    def getMove(self, moveIn):
+        if self.checkMoveLegal(moveIn):
+            return moveIn
+        else:
+            print("Whoops! that column is already full, please choose a different column")
+            self.printGameBoard()
+            return self.getMove(int(input("Please enter a new column to play a counter in."))-1)
+
+    # A method to print the game board.
+    def printGameBoard(self):
+        print("1 2 3 4 5 6 7\n")
+        for row in self.gameBoard[::-1]:
+            for column in row:
+                print(f"{column}", end=" ")
+            print()
+
+    def commandLineGame(self):
         gameComplete = False
 
         print("----------------------------------------------------------------------------------------------")
@@ -183,11 +210,3 @@ class Game:
             print("Whoops! that column is already full, please choose a different column")
             self.printGameBoard()
             return self.moveHandler(self.whoIsPlaying().getMove(), False)
-
-    # A method to print the game board.
-    def printGameBoard(self):
-        print("1 2 3 4 5 6 7\n")
-        for row in self.gameBoard[::-1]:
-            for column in row:
-                print(f"{column}", end=" ")
-            print()
