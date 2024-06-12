@@ -6,12 +6,12 @@ from randomAgent import RandomAgent
 
 
 class Gui:
-    def __init__(self, gameIn: Game):
+    def __init__(self):
         self.window = tk.Tk()
         self.window.title("Connect Four")
         self.window.config(bg="lightgrey")
 
-        self.game = gameIn
+        self.game: Game
 
     def startGame(self):
         def buttonClicked():
@@ -38,6 +38,8 @@ class Gui:
         self.clearScreen(self.window)
 
         def playClicked():
+            # Change to a game creation.
+
             self.gameScreen()
 
         titleFrame = tk.Frame()
