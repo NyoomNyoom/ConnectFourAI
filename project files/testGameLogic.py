@@ -11,14 +11,14 @@ class TestGameLogic(unittest.TestCase):
     def test_whoIsPlayingP1(self):
         newGame = Game(Player(UserAgent("p1")), Player(UserAgent("p2")))
 
-        self.assertEqual(newGame.whoIsPlaying().idName, "p1", "Returned that player 2 is playing.")
+        self.assertEqual(newGame.whoIsPlaying().playerName, "p1", "Returned that player 2 is playing.")
 
     # Checks if method correctly reports player 2 is playing.
     def test_whoIsPlayingP2(self):
         newGame = newGame = Game(Player(UserAgent("p1")), Player(UserAgent("p2")))
         newGame.isPlayer1 = False
 
-        self.assertEqual(newGame.whoIsPlaying().idName, "p2", "Returned that player 1 is playing.")
+        self.assertEqual(newGame.whoIsPlaying().playerName, "p2", "Returned that player 1 is playing.")
 
     # Testing methods for the legal move checker.
 

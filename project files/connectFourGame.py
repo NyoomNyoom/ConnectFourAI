@@ -6,11 +6,11 @@ from settings import Settings
 
 
 class Player:
-    def __init__(self, agent):
+    def __init__(self, agent, name):
         self.agent = agent
         self.counter = None
         self.name = ""
-        self.idName = self.agent.name
+        self.playerName = name
 
     def getMove(self):
         move = self.agent.agentFunction()
