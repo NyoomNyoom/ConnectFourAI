@@ -77,7 +77,7 @@ class Cli:
         while not gameComplete:
             self.printGameBoard()
             move = self.moveHandler(self.game.whoIsPlaying().getMove(), False)
-            currPlayer: Player = self.player1 if self.isPlayer1 else self.player2
+            currPlayer: Player = self.player1 if self.game.isPlayer1 else self.player2
             self.game.makeMove(move)
 
             if self.game.turnsTaken >= 7:
