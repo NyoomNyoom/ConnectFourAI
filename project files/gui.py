@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from connectFourGame import Game
 from connectFourGame import Player
 from userAgent import UserAgent
@@ -11,6 +12,8 @@ class Gui:
         self.window.title("Connect Four")
         self.window.config(bg="lightgrey")
 
+        self.player1: Player
+        self.player2: Player
         self.game: Game
 
     def startGame(self):
@@ -63,17 +66,27 @@ class Gui:
                                    master=headingFrame)
         informationText.pack()
 
-        player1Text = tk.Label(text="Please select a player type for player 1: ", master=player1Frame)
-        player1Text.pack()
+        self.player1Text = tk.Label(text="Please select a player type for player 1: ", master=player1Frame)
+        self.player1Text.pack()
 
-        optionList = tk.OptionMenu(player1Frame, defaultSelect, *options)
-        optionList.pack()
+        self.player1_agent = ttk.Combobox(player1Frame, values=["player", "random ai"])
+        self.player1_agent.set("player")
+        self.player1_agent.pack()
 
-        player2Text = tk.Label(text="Please select a player type for player 2: ", master=player2Frame)
-        player2Text.pack()
+        tk.Label(player1Frame, text="Player 1 Name:").pack()
+        self.player1_name = tk.Entry(player1Frame)
+        self.player1_name.pack()
 
-        option2List = tk.OptionMenu(player2Frame, defaultSelect2, *options2)
-        option2List.pack()
+        self.player2Text = tk.Label(text="Please select a player type for player 2: ", master=player2Frame)
+        self.player2Text.pack()
+
+        tk.Label(player2Frame, text="Player 2 Name:").pack()
+        self.player2_name = tk.Entry(player2Frame)
+        self.player2_name.pack()
+
+        self.player2_agent = ttk.Combobox(player2Frame, values=["player", "random ai"])
+        self.player2_agent.set("player")
+        self.player2_agent.pack()
 
         playbtn = tk.Button(text="Play", master=playFrame, command=playClicked)
         playbtn.pack()
@@ -87,6 +100,10 @@ class Gui:
         self.window.mainloop()
 
     def gameScreen(self):
+        self.player1 = Player(self.player1_agent.get(), self.player1_name.get())
+        self.player2 = Player(self.player2_agent.get(), self.player2_name.get())
+        self.game = Game(self.player1, self.player2)
+
         while not self.game.isGameWon:
             self.clearScreen(self.window)
 
@@ -124,9 +141,9 @@ class Gui:
 
 
 if __name__ == '__main__':
-    player1 = Player(UserAgent("p1"))
-    player2 = Player(UserAgent("p2"))
+    player1 = Player(UserAgent("p1"), "p1")
+    player2 = Player(UserAgent("p2"), "p2")
     newGame = Game(player1, player2)
 
-    guiRun = Gui(newGame)
+    guiRun = Gui()
     guiRun.gameScreen()
