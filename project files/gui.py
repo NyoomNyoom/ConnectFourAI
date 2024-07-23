@@ -12,6 +12,8 @@ class Gui:
         self.window.title("Connect Four")
         self.window.config(bg="lightgrey")
 
+        self.player1_name: tk.Entry
+
         self.player1: Player
         self.player2: Player
         self.game: Game
@@ -43,7 +45,7 @@ class Gui:
         def playClicked():
             # Change to a game creation.
 
-            self.gameScreen()
+            self.initGame()
 
         titleFrame = tk.Frame()
         headingFrame = tk.Frame()
@@ -51,11 +53,9 @@ class Gui:
         player2Frame = tk.Frame()
         playFrame = tk.Frame()
 
-        options = ["Player", "Random AI"]
         defaultSelect = tk.StringVar()
         defaultSelect.set("Player")
 
-        options2 = ["Player", "Random AI"]
         defaultSelect2 = tk.StringVar()
         defaultSelect2.set("Player")
 
@@ -66,8 +66,8 @@ class Gui:
                                    master=headingFrame)
         informationText.pack()
 
-        self.player1Text = tk.Label(text="Please select a player type for player 1: ", master=player1Frame)
-        self.player1Text.pack()
+        player1Text = tk.Label(text="Please select a player type for player 1: ", master=player1Frame)
+        player1Text.pack()
 
         self.player1_agent = ttk.Combobox(player1Frame, values=["player", "random ai"])
         self.player1_agent.set("player")
@@ -77,8 +77,8 @@ class Gui:
         self.player1_name = tk.Entry(player1Frame)
         self.player1_name.pack()
 
-        self.player2Text = tk.Label(text="Please select a player type for player 2: ", master=player2Frame)
-        self.player2Text.pack()
+        player2Text = tk.Label(text="Please select a player type for player 2: ", master=player2Frame)
+        player2Text.pack()
 
         tk.Label(player2Frame, text="Player 2 Name:").pack()
         self.player2_name = tk.Entry(player2Frame)
@@ -99,18 +99,21 @@ class Gui:
 
         self.window.mainloop()
 
-    def gameScreen(self):
+    def initGame(self):
         self.player1 = Player(self.player1_agent.get(), self.player1_name.get())
         self.player2 = Player(self.player2_agent.get(), self.player2_name.get())
         self.game = Game(self.player1, self.player2)
 
+        self.gameScreen()
+
+    def gameScreen(self):
         while not self.game.isGameWon:
             self.clearScreen(self.window)
 
             board = tk.Canvas()
             board.create_rectangle(0, 0, 600, 700, fill="blue")
 
-            self.game.playGame()
+            # self.game.playGame()
 
             self.updateGameScreen(self.game.gameBoard, board)
             board.pack()
