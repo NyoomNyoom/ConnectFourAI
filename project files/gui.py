@@ -107,36 +107,67 @@ class Gui:
         self.gameScreen()
 
     def gameScreen(self):
-        while not self.game.isGameWon:
-            self.clearScreen(self.window)
+        self.clearScreen(self.window)
 
-            board = tk.Canvas()
-            board.create_rectangle(0, 0, 600, 700, fill="blue")
+        gameFrame = tk.Frame(self.window)
+        gameFrame.pack()
 
-            # self.game.playGame()
+        buttonFrame = tk.Frame(gameFrame)
+        buttonFrame.pack()
 
-            self.updateGameScreen(self.game.gameBoard, board)
-            board.pack()
+        # Create buttons for each column
+        self.move_buttons = []
+        for col in range(7):
+            button = tk.Button(buttonFrame, text="Drop", command=lambda c=col: self.make_move(c))
+            button.grid(row=0, column=col, padx=5, pady=5)
+            self.move_buttons.append(button)
 
-            self.window.mainloop()
+        self.board = tk.Canvas(gameFrame, width=280, height=240)
+        self.board.pack()
+
+        self.updateGameScreen(self.game.gameBoard, self.board)
+
+        self.status_label = tk.Label(gameFrame, text=f"{self.game.whoIsPlaying().name}'s turn")
+        self.status_label.pack()
+
+    def make_move(self, column):
+        if self.game.checkMoveLegal(column):
+            self.game.makeMove(column)
+            self.updateGameScreen(self.game.gameBoard, self.board)
+
+            if self.game.isGameWon:
+                self.status_label.config(text=f"{self.game.whoIsPlaying().name} wins!")
+                self.disable_buttons()
+            elif self.game.turnsTaken == 42:
+                self.status_label.config(text="It's a draw!")
+                self.disable_buttons()
+            else:
+                self.status_label.config(text=f"{self.game.whoIsPlaying().name}'s turn")
 
     def updateGameScreen(self, gameBoardIn, background: tk.Canvas):
         gameBoard = gameBoardIn
+        background.delete("all")
+        background.create_rectangle(0, 0, 280, 240, fill="blue")
 
-        rowNum = 0
-        colNum = 0
+        for row in range(6):
+            for col in range(7):
+                x1 = col * 40 + 5
+                y1 = row * 40 + 5
+                x2 = x1 + 30
+                y2 = y1 + 30
 
-        for row in gameBoard:
-            for space in row:
-                if space == 0:
-                    background.create_oval(colNum*40,rowNum*40, (colNum+1)*40, (rowNum+1)*40, fill="white")
-                elif space == 1:
-                    background.create_oval(colNum * 40, rowNum * 40, (colNum + 1) * 40, (rowNum + 1) * 40, fill="yellow")
-                elif space == 2:
-                    background.create_oval(colNum * 40, rowNum * 40, (colNum + 1) * 40, (rowNum + 1) * 40, fill="red")
-                colNum += 1
-            rowNum += 1
-            colNum = 0
+                if gameBoard[row][col] == 0:
+                    color = "white"
+                elif gameBoard[row][col] == 1:
+                    color = "yellow"
+                else:
+                    color = "red"
+
+                background.create_oval(x1, y1, x2, y2, fill=color, outline="black")
+
+    def disable_buttons(self):
+        for button in self.move_buttons:
+            button.config(state="disabled")
 
     def clearScreen(self, screen: tk.Tk):
         for child in screen.winfo_children():
@@ -149,4 +180,4 @@ if __name__ == '__main__':
     newGame = Game(player1, player2)
 
     guiRun = Gui()
-    guiRun.gameScreen()
+    guiRun.startGame()
