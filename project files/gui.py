@@ -144,7 +144,8 @@ class Gui:
             else:
                 self.status_label.config(text=f"{self.game.whoIsPlaying().name}'s turn")
 
-    def updateGameScreen(self, gameBoardIn, background: tk.Canvas):
+    @staticmethod
+    def updateGameScreen(gameBoardIn, background: tk.Canvas):
         gameBoard = gameBoardIn
         background.delete("all")
         background.create_rectangle(0, 0, 280, 240, fill="blue")
@@ -152,7 +153,7 @@ class Gui:
         for row in range(6):
             for col in range(7):
                 x1 = col * 40 + 5
-                y1 = row * 40 + 5
+                y1 = (5 - row) * 40 + 5
                 x2 = x1 + 30
                 y2 = y1 + 30
 
@@ -168,6 +169,7 @@ class Gui:
     def disable_buttons(self):
         for button in self.move_buttons:
             button.config(state="disabled")
+
 
     def clearScreen(self, screen: tk.Tk):
         for child in screen.winfo_children():
