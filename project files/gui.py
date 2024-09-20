@@ -116,19 +116,19 @@ class Gui:
         buttonFrame.pack()
 
         # Create buttons for each column
-        self.move_buttons = []
+        move_buttons = []
         for col in range(7):
             button = tk.Button(buttonFrame, text="Drop", command=lambda c=col: self.make_move(c))
             button.grid(row=0, column=col, padx=5, pady=5)
-            self.move_buttons.append(button)
+            move_buttons.append(button)
 
-        self.board = tk.Canvas(gameFrame, width=280, height=240)
-        self.board.pack()
+        board = tk.Canvas(gameFrame, width=280, height=240)
+        board.pack()
 
-        self.updateGameScreen(self.game.gameBoard, self.board)
+        self.updateGameScreen(self.game.gameBoard, board)
 
-        self.status_label = tk.Label(gameFrame, text=f"{self.game.whoIsPlaying().name}'s turn")
-        self.status_label.pack()
+        status_label = tk.Label(gameFrame, text=f"{self.game.whoIsPlaying().name}'s turn")
+        status_label.pack()
 
     def make_move(self, column):
         if self.game.checkMoveLegal(column):
