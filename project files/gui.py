@@ -18,6 +18,10 @@ class Gui:
         self.player2: Player
         self.game: Game
 
+        self.move_buttons = []
+        self.player1_agent: ttk.Combobox
+        self.player2_agent: ttk.Combobox
+
     def startGame(self):
         def buttonClicked():
             self.playerSelection()
@@ -115,8 +119,7 @@ class Gui:
         buttonFrame = tk.Frame(gameFrame)
         buttonFrame.pack()
 
-        # Create buttons for each column
-        self.move_buttons = []
+        # Create buttons for each colum
         for col in range(7):
             button = tk.Button(buttonFrame, text="Drop", command=lambda c=col: self.make_move(c))
             button.grid(row=0, column=col, padx=5, pady=5)
@@ -170,7 +173,7 @@ class Gui:
         for button in self.move_buttons:
             button.config(state="disabled")
 
-
+    @staticmethod
     def clearScreen(self, screen: tk.Tk):
         for child in screen.winfo_children():
             child.destroy()
@@ -183,3 +186,4 @@ if __name__ == '__main__':
 
     guiRun = Gui()
     guiRun.startGame()
+    
