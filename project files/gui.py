@@ -174,7 +174,7 @@ class Gui:
             button.config(state="disabled")
 
     @staticmethod
-    def clearScreen(self, screen: tk.Tk):
+    def clearScreen(screen: tk.Tk):
         for child in screen.winfo_children():
             child.destroy()
 
@@ -186,4 +186,3 @@ if __name__ == '__main__':
 
     guiRun = Gui()
     guiRun.startGame()
-    
