@@ -2,13 +2,15 @@ __author__ = "@NyoomNyoom"
 __email__ = "jacksonnorth1275@gmail.com"
 __version__ = 1.0
 
+from settings import Settings
+
 
 class Player:
-    def __init__(self, agent):
+    def __init__(self, agent, name):
         self.agent = agent
         self.counter = None
         self.name = ""
-        self.idName = self.agent.name
+        self.playerName = name
 
     def getMove(self):
         move = self.agent.agentFunction()
@@ -45,8 +47,13 @@ class Game:
         # Sets the counter for player 1 and 2 and also sets their name.
         self.player1.setCounter(True)
         self.player2.setCounter(False)
+        self.isGameWon = False
 
     def whoIsPlaying(self):
+        """
+        A method to determine which players turn it is.
+        :return: the Player object of who is playing.
+        """
         return self.player1 if self.isPlayer1 else self.player2
 
     # A method to check if there is a winning combination on the game board.
@@ -54,12 +61,16 @@ class Game:
         playerCounter = player.counter
 
         if self.checkLeftRight(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkUpDown(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkNESW(playerCounter):
+            self.isGameWon = True
             return True
         elif self.checkNWSE(playerCounter):
+            self.isGameWon = True
             return True
         else:
             return False
