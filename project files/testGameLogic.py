@@ -11,6 +11,7 @@ class TestGameLogic(unittest.TestCase):
     def test_whoIsPlayingP1(self):
         newGame = Game(Player(UserAgent("p1"), "p1"), Player(UserAgent("p2"), "p2"))
 
+
         self.assertEqual(newGame.whoIsPlaying().playerName, "p1", "Returned that player 2 is playing.")
 
     # Checks if method correctly reports player 2 is playing.
@@ -342,7 +343,7 @@ class TestGameLogic(unittest.TestCase):
         player1 = Player(UserAgent("p1"), "p1")
         player2 = Player(UserAgent("p2"), "p2")
         newGame = Game(player1, player2)
-
+      
         newGame.gameBoard = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],

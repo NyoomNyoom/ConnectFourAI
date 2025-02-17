@@ -12,6 +12,7 @@ class TestGameInit(unittest.TestCase):
         player1 = Player(UserAgent("p1"), "p1")
         player2 = Player(UserAgent("p2"), "p2")
         newGame = Game(player1, player2)
+      
         gameBoardTest = [
                         [0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0],

@@ -9,3 +9,4 @@ if gameSettings.gameType == "cli":
 elif gameSettings.gameType == "gui":
     game = Gui()
     game.startGame()
+
